@@ -1,12 +1,17 @@
-{% extends 'tweets/base.html' %}
+{% extends 'base.html' %}
 
 {% block head_title %}Home{% endblock %}
 
 {% block content %}
-Home Page
 
-<div id="tweets">
-    Replace Me
+<div class="row text-center">
+    <div class="col">
+        <h1>Welcome to Tweetme</h1>
+    </div>
+</div>
+
+<div class='row' id="tweets">
+    Loading....
 </div>
 
 <script>
@@ -18,18 +23,14 @@ Home Page
     const responseType="json"
 
     function handleDidLike(tweet_id,currentCount){
-
     }
     function LikeBtn(tweet){
-        return "<button class='btn btn-primary' onclick=handleDidLike(tweet.id,tweet.likes)>Like</button>"
+        return "<button class='btn btn-primary btn-sm' onclick=handleDidLike("+tweet.id+","+tweet.likes+")>"+tweet.likes+" Likes</button>"
     }
 
     function formatTweetElement(tweet){
 
-        var formattedTweet="<div class='mb-4 tweet' id='tweet-" + tweet.id
-        + "' ><p>" + tweet.content + 
-            "</p><div class='btn-group'>" + LikeBtn(tweet) +
-            "</div></div"
+        var formattedTweet=`<div class='col-12 col-md-10 mx-auto border-top border-bottom mb-4 py-3 tweet' id='tweet-${tweet.id}><p>${tweet.content}</p><div class='btn-group'>${LikeBtn(tweet)}</div></div`
         return formattedTweet
     }
     xhr.responseType=responseType
