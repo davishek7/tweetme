@@ -2,8 +2,9 @@
     -> Creating
         -> Text
         -> Image
-    -> Deleting
+    -> Delete
     -> Retweeting
+    -> Liking or Unliking
 
 2. Users
     -> Register

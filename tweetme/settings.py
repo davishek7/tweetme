@@ -25,8 +25,11 @@ SECRET_KEY = '&kha_&hvw18&@q(j8j#svo!w@8lz4!e-h)v5_ctth5pn1^l)$k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
+LOGIN_URL='/login'
 
+MAX_TWEET_LENGTH=240
+TWEET_ACTION_OPTIONS=['like','unlike','retweet']
 
 # Application definition
 
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tweets.apps.TweetsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -119,3 +123,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_RENDERER_CLASSES=['rest_framework.renderers.JSONRenderer',]
+
+if DEBUG:
+    DEFAULT_RENDERER_CLASSES+=['rest_framework.renderers.BrowsableAPIRenderer',]
+
+
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+    'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES':DEFAULT_RENDERER_CLASSES,
+}
